@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#100821" />
+  <title>A Universe For Asha ✦</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="nebula nebula-one" aria-hidden="true"></div>
+  <div class="nebula nebula-two" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <button class="music-button" id="musicToggle" aria-label="Play background music"><span class="music-icon">♫</span><span id="musicLabel">Play our song</span></button>
+  <audio id="backgroundMusic" src="music/your-song.mp3" loop preload="none"></audio>
+
+  <main>
+    <section class="scene intro active" id="intro">
+      <p class="eyebrow reveal">A LITTLE PLACE BEYOND THE STARS</p>
+      <div class="intro-orbit" aria-hidden="true"><span class="orbit orbit-a"></span><span class="orbit orbit-b"></span><span class="orbit-core">✦</span><i class="orbit-dot dot-a"></i><i class="orbit-dot dot-b"></i><i class="orbit-dot dot-c"></i></div>
+      <h1 class="hero-title reveal">A Universe<br /><em>For Asha</em></h1>
+      <p class="hero-copy reveal">Somewhere in this endless universe,<br />there's a little world made just for you.</p>
+      <button class="magic-button" id="enterUniverse"><span>Enter our universe</span><b>↗</b></button>
+      <p class="tiny-hint">Best experienced with sound on and a little wonder ✧</p>
+      <div class="scroll-star" aria-hidden="true">✧</div>
+    </section>
+
+    <section class="scene portal-scene" id="portalScene" aria-labelledby="portalTitle">
+      <p class="eyebrow">FOLLOW THE LIGHT</p>
+      <h2 id="portalTitle" class="section-title">Every star has a story.</h2>
+      <p class="section-copy">Tap the glowing star and see what the universe has been hiding.</p>
+      <button class="portal" id="openPortal" aria-label="Open the star portal"><span class="portal-ring ring-one"></span><span class="portal-ring ring-two"></span><span class="portal-ring ring-three"></span><span class="portal-star">✦</span><span class="portal-prompt">touch the star</span></button>
+      <p class="portal-status" id="portalStatus">A little magic is waiting for you.</p>
+    </section>
+
+    <section class="scene memories-scene" id="memories">
+      <p class="eyebrow">TEN LITTLE PIECES OF FOREVER</p>
+      <h2 class="section-title">Our <em>memories</em></h2>
+      <p class="section-copy">Ten moments, ten reasons to smile. Tap any photo to see it closer.</p>
+      <div class="memory-grid" id="memoryGrid" aria-label="Photo memories"></div>
+      <p class="gallery-note">Replace the sample photo files with your own pictures. ✦</p>
+      <button class="magic-button scene-next" id="toLetter"><span>Continue to your secret letter</span><b>✧</b></button>
+    </section>
+
+    <section class="scene letter-scene" id="letterScene">
+      <div class="floating-orb orb-one" aria-hidden="true">✧</div><div class="floating-orb orb-two" aria-hidden="true">♡</div>
+      <p class="eyebrow">A MESSAGE FROM MY LITTLE CORNER OF THE GALAXY</p>
+      <h2 class="section-title">A note written<br /><em>just for you</em></h2>
+      <p class="section-copy">Some words are too special to leave out in the open.</p>
+      <button class="envelope" id="openLetter" aria-label="Open the secret letter"><span class="envelope-glow"></span><span class="envelope-flap"></span><span class="envelope-heart">♡</span><span class="envelope-label">For Asha</span></button>
+      <p class="tiny-hint">Tap the envelope to open your letter</p>
+      <button class="magic-button scene-next" id="toFinale"><span>Discover the final surprise</span><b>✦</b></button>
+    </section>
+
+    <section class="scene finale-scene" id="finale">
+      <div class="heart-constellation" aria-hidden="true"><svg viewBox="0 0 240 210" role="img"><path d="M120 188 C98 165 20 118 20 66 C20 14 84 4 120 48 C156 4 220 14 220 66 C220 118 142 165 120 188Z" /></svg></div>
+      <p class="eyebrow">IF THE STARS COULD SPEAK</p>
+      <h2 class="section-title">You make this universe<br /><em>feel like home.</em></h2>
+      <p class="final-message" id="finalMessage">Out of all the places in this endless universe, I'm glad our paths crossed. I hope this little world reminds you how wonderfully special you are.</p>
+      <button class="magic-button" id="wishButton"><span>Make a wish</span><b>✧</b></button>
+      <p class="wish-result" id="wishResult" aria-live="polite"></p>
+      <button class="text-button" id="replayButton">↺ Experience the magic again</button>
+      <footer>MADE OF STARDUST, LITTLE MOMENTS & A LOT OF HEART <span>✦</span></footer>
+    </section>
+  </main>
+
+  <div class="modal" id="photoModal" role="dialog" aria-modal="true" aria-label="Photo memory" hidden>
+    <button class="modal-close" data-close="photoModal" aria-label="Close photo">×</button>
+    <div class="modal-card photo-modal-card"><img id="modalPhoto" src="" alt="A special memory" /><p class="modal-caption" id="modalCaption"></p></div>
+    <button class="modal-arrow prev" id="prevPhoto" aria-label="Previous photo">‹</button><button class="modal-arrow next" id="nextPhoto" aria-label="Next photo">›</button>
+  </div>
+
+  <div class="modal letter-modal" id="letterModal" role="dialog" aria-modal="true" aria-labelledby="letterHeading" hidden>
+    <button class="modal-close" data-close="letterModal" aria-label="Close letter">×</button>
+    <article class="letter-paper">
+      <div class="letter-sparkle">✦　✧　✦</div>
+      <p class="letter-to">Meri Asha, ♡</p>
+      <h2 id="letterHeading">Agar main tumhe ek cheez de sakta… ♡</h2>
+      <p>Toh main tumhe apni nazron se khud ko dekhne ka mauka deta, taaki tum samajh sako ki tum mere liye kitni khaas ho, tumhe pata chalta ki tumhari chhoti-si muskaan bhi mere saadhaaran-se din ko kitna khoobsurat bana sakti haitaaki tum jaan paati ki is duniya mein kam-se-kam ek insaan aisa hai, jiske liye tumhari khushi bahut maayne rakhti hai. ❤️</p>
+      <p>Tumhe perfect hone ki zaroorat nahi hai, aur na hi tumhe khaas banne ke liye kisi wajah ki zaroorat hai. Tumhari chhoti-si hansi, tumhari pyaari-si baatein, tumhara gussa, tumhara bachpana aur tumhara hona — ye sab mere liye bahut anmol hain,  🫶🏻</p>
+      <p>Jab bhi yeh duniya tumhe thaka de, jab kabhi sab kuch mushkil lage, toh aasman ke in taaron ko dekhkar yaad karna ki kahin isi duniya mein ek Rajesh bhi hai, jo tumhari muskaan ki dua karta hai aur tumhe hamesha khush dekhna chahta hai. 🌙✨</p>
+      <p>Tum meri kahaani ka sirf ek hissa nahi ho, tum un khoobsurat ehsaason mein se ek ho, jinhe main shabdon mein poori tarah kabhi bayaan nahi kar sakta.</p>
+      <p class="letter-signoff"><strong>Poore brahmaand jitne pyaar aur dher saari duaon ke saath,</strong><br /><span>Tumhara Rajesh ♡</span></p>
+      <div class="letter-sparkle">✧　✦　✧</div>
+    </article>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
